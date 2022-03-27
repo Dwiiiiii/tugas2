@@ -6,16 +6,30 @@ $index = 1;
 <!doctype html>
 <html lang="en">
 <head>
- <title>Data Mahasiswa</title>
+ <title>Cetak Data</title>
+ <style>
+ h1 {
+ text-align: center;
+ }
+ table,
+ td,
+ th {
+ border: 1px solid #ddd;
+ text-align: left;
+ }
+ table {
+ border-collapse: collapse;
+ width: 100%;
+ }
+ th,
+ td {
+ padding: 15px;
+ }
+ </style>
 </head>
 <body>
- <div>
- <h1>Data Nilai Mahasiswa</h1>
- <a href="create.php">Tambah Data</a>
- <br>
-<a href="print.php" target="_blank">Cetak Data</a>
- <br>
- <table border="1">
+ <h1>Laporan Data Nilai Mahasiswa</h1>
+ <table>
  <thead>
  <tr>
  <th>No.</th>
@@ -26,12 +40,11 @@ $index = 1;
  <th>Tugas</th>
  <th>NA</th>
  <th>Status</th>
- <th>Aksi</th>
  </tr>
  </thead>
  <tbody>
  <?php
- $result = $model->tampil_data();
+$result = $model->tampil_data();
  if (!empty($result)) {
  foreach ($result as $data) : ?>
  <tr>
@@ -43,22 +56,18 @@ $index = 1;
  <td><?= $data->tugas ?></td>
  <td><?= $data->na ?></td>
  <td><?= $data->status ?></td>
- <td>
- <a name="edit" id="edit" href="edit.php
-?nim=<?= $data->nim ?>">Edit</a>
- <a name="hapus" id="hapus" href="proces
-s.php?nim=<?= $data->nim ?>">Delete</a>
- </td>
  </tr>
  <?php endforeach;
  } else { ?>
  <tr>
- <td colspan="9">Belum ada data pada tabel nilai
-mahasiswa.</td>
+ <td colspan="9">Belum ada data pada tabel nilai mah
+asiswa.</td>
  </tr>
-<?php } ?>
+ <?php } ?>
  </tbody>
  </table>
- </div>
+ <script>
+ window.print();
+ </script>
 </body>
 </html>
